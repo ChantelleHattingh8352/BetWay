@@ -36,5 +36,8 @@ public class LoginSuccessful extends BasePage {
 		return isUserLoggedIn;
 	}
 
-
+//cleanup 
+	public void cleanup() { 
+		driver.quit();
+	}
 } 

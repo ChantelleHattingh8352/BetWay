@@ -24,24 +24,48 @@ public class listeners implements ITestListener {
 
 	@Override
 	public void onTestFailedWithTimeout(ITestResult result) {
+		System.out.println("Failed, due to timeout " + result.getName()); 
+		try {
+			utilities.takeSnapShot("On test start " + utilities.timereturn() +".png");
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		//ITestListener.super.onTestFailedWithTimeout(result);
 	}
 
 	@Override
 	public void onStart(ITestContext context) {
+		System.out.println("Listener, Test start " + context.getName()); 
+		try {
+			utilities.takeSnapShot("On test start " + utilities.timereturn() +".png");
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		//ITestListener.super.onStart(context);
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
+		System.out.println("Listener, Test finish " + context.getName()); 
+		try {
+			utilities.takeSnapShot("On test start " + utilities.timereturn() +".png");
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		//ITestListener.super.onFinish(context);
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
+		System.out.println("!Listener, !Test failed " + result.getName()); 
+		try {
+			utilities.takeSnapShot("On test !Failure " + utilities.timereturn() +".png");
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		//ITestListener.super.onTestFailure(result);
 	}
@@ -49,7 +73,12 @@ public class listeners implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		
-		System.out.println("Listeners " + result.getName()); 
+		System.out.println("Listener, Test start " + result.getName()); 
+		try {
+			utilities.takeSnapShot("On test start " + utilities.timereturn() +".png");
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		//ITestListener.super.onTestStart(result);
 	}

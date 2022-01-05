@@ -32,6 +32,7 @@ public class LoginFailedTest {
 //Assert if user is not logged in and pop up is shown
 	Assert.assertEquals(true, lf.loginFailureDetailsIncorrect());
 
+	lf.cleanup();
 	}
 	
 	@Test
@@ -48,6 +49,10 @@ public class LoginFailedTest {
 	lf.clickLogin();
 	
 	Assert.assertEquals(true, lf.loginFailureDetailsIncorrect());
+	
+	lf.cleanup();
 	}
 	
+
+
 }

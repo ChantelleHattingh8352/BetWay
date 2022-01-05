@@ -39,7 +39,8 @@ public class LoginFailed extends BasePage {
 		}
 
 
-	
+		public void cleanup() { 
+			driver.quit();
 
-
+		}
 }

@@ -9,11 +9,14 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,11 +42,17 @@ public class BasePage {
 					if (browser.equalsIgnoreCase("chrome")) { 
 						//set path to chromedriver.exe
 						System.setProperty("webdriver.chrome.driver", pdriverDir+"chromedriver.exe");
-						
+						//System.setProperty("webdriver.chrome.whitelistedIps", "");
 						//create an instance of chrome 
+						
 						driver = new ChromeDriver();
+						
+
+						driver.manage().deleteAllCookies();
+						driver.get("chrome://settings/clearBrowserData");
+						driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
+//						driver.findElement(By.)
 						driver.get(systemUnderTestBG);
-//						
 						driver.manage().window().maximize();
 						driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
 					}
@@ -125,7 +134,7 @@ public class BasePage {
 		
 	//Create a method to get Element Text
 		public String getElementText(By pLocator) { 
-			waitForElement(30, pLocator); 
+			waitForElement(120, pLocator); 
 			String h1 = getElement(pLocator).getText();
 			return h1; 
 		}
@@ -133,20 +142,26 @@ public class BasePage {
 		
 	//Create a method to get Element	
 		public WebElement getElement(By pLocator) { 
-			waitForClick(30, pLocator);
+			waitForClick(120, pLocator);
 			return driver.findElement(pLocator); 
 		}
 		
 	//Create a method to click Element
 		public void clickElement(By pLocator) { 
-			waitForClick(60, pLocator);
+			waitForClick(120, pLocator);
 			getElement(pLocator).click(); 
 		}
 		
 	//Create a method to Enter Text
 		public void EnterText(By pLocator, String pText) { 
-			waitForClick(30, pLocator); 
+			waitForClick(120, pLocator); 
 			driver.findElement(pLocator).sendKeys(pText); 
+		}
+		
+		//Create a method to Enter digits
+		public void EnterNumber(By pLocator, int pNumber) { 
+			waitForClick(120, pLocator); 
+			driver.findElement(pLocator).sendKeys(String.valueOf(pNumber)); 
 		}
 		
 		
@@ -157,6 +172,8 @@ public class BasePage {
 			//Populates the dropdown
 			sDrpDown.selectByVisibleText(pValue); 
 		}
+		
+		
 	 
 	//Create a method to handle tables
 		public void tablesDemo() { 
@@ -193,8 +210,26 @@ public class BasePage {
 	//Clean up (close the browser) 
 		public void cleanup() { 
 			driver.quit();
+		}		
+			
+	//
+	
+		public void mouseMove() {
+			WebElement element = driver.findElement(By.id("legalAge"));
+			
+			Actions builder = new Actions(driver);
+				Action mouseOverHome = builder 
+						.moveToElement(element)
+								.click().build();
+			mouseOverHome.perform();
+		}
+	//Create a method to verify if an element is available 
+			
+			
+	//Create a method to read from a file
+			
 		}
 		
-	}
+	
 
 

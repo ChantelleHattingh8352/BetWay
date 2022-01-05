@@ -18,7 +18,7 @@ public class LoginSuccessfulTest {
 		ls.clickLogin(); 
 		
 //AND - Valid username entered
-		ls.enterLogin("JLBBGSTG02");
+		ls.enterLogin("JLBBG01");
 		
 //THEN - Click on password
 		ls.clickPassword();
@@ -32,5 +32,6 @@ public class LoginSuccessfulTest {
 //Assert if user is logged in 
 		Assert.assertEquals(true, ls.isUserLoggedIn());
 		
+		//ls.cleanup();
 	}
 }

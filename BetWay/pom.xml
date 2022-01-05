@@ -15,6 +15,10 @@
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
 	</properties>
+	
+	<profiles>
+	<profile>
+	<id>Regression</id>
 	<build>
 		<plugins>
 			<!-- Compiler plug-in -->
@@ -52,7 +56,7 @@
 					<reportsDirectory>${project.build.directory}/surefire-reports-${maven.build.timestamp}</reportsDirectory>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<suiteXmlFile>Regression.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -97,7 +101,11 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		
 	</build>
+	</profile>
+	</profiles>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -166,6 +174,11 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
 		</dependency>
 	</dependencies>
 </project>
